@@ -333,6 +333,92 @@ $$
 
 ⚠️ In addition to memory limitations, OLS has other constraints. Mathematically, it assumes that the relationship between the independent and dependent variables is linear, which may not always hold true in real-world scenarios. OLS is also sensitive to outliers, as they can disproportionately affect the calculated coefficients. Moreover, OLS requires the independent variables to be uncorrelated (no multicollinearity); if this condition is violated, it can lead to unstable coefficient estimates and make it difficult to assess the individual contribution of each predictor variable. Thus, OLS requires more preprocessing to ensure the data fits its assumptions, while Gradient Descent can handle a wider variety of datasets with less stringent requirements.
 
+## [Evaluation Metrics](#evaluation-metrics)
 
+Understanding the performance of our linear regression model is essential, and we use metrics like Mean Squared Error (MSE) and R-squared (R²) to gauge its effectiveness. Let’s break these down using the analogy of house prices.
 
+### Mean Squared Error (MSE)
 
+MSE measures how far our predicted house prices are from the actual prices on average. It calculates the squared difference between each predicted price and the actual price, helping us understand the accuracy of our predictions.
+
+Mathematically, MSE is defined as:
+
+$$
+\text{MSE} = \frac{1}{N} \sum (y_{\text{test}} - y_{\text{pred}})^2
+$$
+
+where:
+- $\( y_{\text{test}} \)$ = actual house prices
+- $\( y_{\text{pred}} \)$ = predicted house prices
+- $\( N \)$ = number of observations
+
+If the predicted house prices are close to the actual prices, the MSE will be small, indicating good predictions. Conversely, if the predictions are widely off, the MSE will be large, showing poor performance.
+
+### Root Mean Squared Error (RMSE)
+
+The Root Mean Squared Error (RMSE) is another useful metric that provides the error in the same unit as the original data by taking the square root of MSE:
+
+$$
+\text{RMSE} = \sqrt{\text{MSE}} = \sqrt{\frac{1}{N} \sum (y_{\text{test}} - y_{\text{pred}})^2}
+$$
+
+### Mean Absolute Error (MAE)
+
+Mean Absolute Error (MAE) measures the average magnitude of the errors in a set of predictions, without considering their direction. It’s defined as:
+
+$$
+\text{MAE} = \frac{1}{N} \sum |y_{\text{test}} - y_{\text{pred}}|
+$$
+
+### R-squared (R²)
+
+R-squared is a key metric that tells us how well our model explains the variation in house prices. It measures the proportion of the variance in the dependent variable (actual prices) that can be predicted from the independent variables (features used for predictions).
+
+Mathematically, R² is calculated as:
+
+$$
+R^2 = 1 - \frac{\sum (y_{\text{test}} - y_{\text{pred}})^2}{\sum (y_{\text{test}} - \bar{y})^2}
+$$
+
+As you notice, it simply is: 
+
+$$
+R^2 = 1 - \frac{\text{squared sum of residuals}}{\text{variance of actual values}}
+$$
+
+where:
+- $\( \bar{y} \)$ is the mean of the actual house prices.
+
+In simpler terms, R² tells us the percentage of the variance in actual house prices that is explained by our model. For instance, if R² = 0.39, it means our model explains 39% of the variation in house prices, while 61% remains unexplained.
+
+Here's how it relates to our house analogy:
+- If R² = 1, it means our predictions perfectly match the actual prices.
+- If R² = 0, our predictions are no better than just guessing the average house price.
+
+Thus, a higher R² value indicates that our model captures more of the variability in the actual prices, while a lower R² suggests that our model may be missing key factors influencing house prices.
+
+### Adjusted R-squared
+
+Adjusted R-squared modifies R² to account for the number of predictors in the model. It penalizes excessive use of unhelpful variables, providing a more accurate measure of model performance:
+
+$$
+\text{Adjusted } R^2 = 1 - \left( \frac{(1 - R^2)(N - 1)}{N - k - 1} \right)
+$$
+
+where:
+- $\( k \)$ = number of independent variables
+- $\( N \)$ = number of observations
+
+While R-squared can only increase or stay the same when you add more predictors (even if they are irrelevant), Adjusted R-squared can decrease if the new predictors don't improve the model. This makes Adjusted-R squared a better measure when comparing models with different numbers of predictors.
+
+```🛈``` This metric is especially useful for comparing models with different numbers of predictors, as it helps prevent overfitting.
+
+### Visualization Insights
+
+1. **Residuals vs. Predicted Prices Plot**:
+   - Points close to the zero line indicate good predictions, while points far from this line suggest larger errors in prediction.
+
+2. **Histogram of Residuals**:
+   - A normal distribution centered at zero indicates that most of the predictions are accurate, with no systematic bias in over- or under-predicting house prices.
+
+By analyzing MSE, RMSE, MAE, R², and Adjusted R², along with visualizing residuals, we can gain valuable insights into how well our linear regression model performs in predicting house prices.
