@@ -38,7 +38,7 @@
 
 ---
 
-## ✦ [Introduction to Linear Regression](#introduction-to-linear-regression)
+## [Introduction to Linear Regression](#introduction-to-linear-regression) ✦ 
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/e47a7943-6fd4-4664-9d29-27c2c13bafaa" alt="lrmeme" width="500"/>
