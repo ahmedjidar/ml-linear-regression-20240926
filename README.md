@@ -28,15 +28,19 @@
    - Overfitting
    - Underfitting
 9. [Implementing Linear Regression](#implementing-linear-regression)
-   - Code Example
-   - Data Preparation
+   - Code Example Using sklearn LinearRegression model (OLS based)[]
+   - Code Example Using sklearn SGDRegresser model (Gradient Descent based)[]
 10. [Conclusion](#conclusion)
 11. [Further Reading/Resources](#further-readingresources)
 
 ## ✦ [Introduction to Linear Regression](#introduction-to-linear-regression)
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e47a7943-6fd4-4664-9d29-27c2c13bafaa" alt="lrmeme" width="500"/>
+</p>
+
 ### ```ⓘ``` Definition
-Linear Regression is a statistical method used to model the relationship between a dependent variable and one or more independent variables. The primary goal is to predict the value of the dependent variable based on the values of the independent variables by fitting a linear equation to the observed data.
+ Linear Regression is a statistical method used to model the relationship between a dependent variable and one or more independent variables. The primary goal is to predict the value of the dependent variable based on the values of the independent variables by fitting a linear equation to the observed data.
 
 ### Use Cases
 ```Linear Regression``` is widely used across various fields for its simplicity and interpretability. Some common use cases include:
@@ -97,8 +101,6 @@ There are two main types of linear regression:
 <p align="center">
   <img src="https://miro.medium.com/v2/resize:fit:597/1*RqL8NLlCpcTIzBcsB-3e7A.png" alt="Simple Linear Regression Graph" width="35%" />
 </p>
-
-By understanding these mathematical foundations, you can better grasp how linear regression models function and how to apply them effectively to various data-driven problems.
 
 ## [Assumptions of Linear Regression](#assumptions-of-linear-regression)
 
@@ -176,7 +178,7 @@ $$
 To better understand this concept, let’s take a look at a graph that illustrates both homoscedasticity and heteroscedasticity:
 
 <p align="center">
-  <img src="" width="400" />
+  <img src="https://lh3.googleusercontent.com/B2hT0jQlT2xw6-pRWlqMktNDhiteFjk32W13_stPWUU72uaMOxIKGDqhGOzS1x48rl1vMWF72x08x34xnuHueiJ2YcQZHqTpT9jYU_iENLlV9RfJ5nAaWOELMOUEUJJ1ATkJ1E01z6mpI0Ko" />
 </p>
 
 In the image, you can see how in homoscedasticity, the errors are randomly scattered around zero with a consistent spread, whereas in heteroscedasticity, the errors vary in spread, making it difficult to predict outcomes.
@@ -418,7 +420,235 @@ While R-squared can only increase or stay the same when you add more predictors 
 1. **Residuals vs. Predicted Prices Plot**:
    - Points close to the zero line indicate good predictions, while points far from this line suggest larger errors in prediction.
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f44bd02f-10c6-4d24-ba83-cc6539c39a75" alt="RP" width="500" />
+</p>
+
 2. **Histogram of Residuals**:
    - A normal distribution centered at zero indicates that most of the predictions are accurate, with no systematic bias in over- or under-predicting house prices.
+  
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f1148b1d-c577-4b03-92f7-2f574120e192" alt="RP" width="500" />
+</p>
 
-By analyzing MSE, RMSE, MAE, R², and Adjusted R², along with visualizing residuals, we can gain valuable insights into how well our linear regression model performs in predicting house prices.
+`🗲` By analyzing MSE, RMSE, MAE, R², and Adjusted R², along with visualizing residuals, we can gain valuable insights into how well our linear regression model performs in predicting house prices.
+
+## [Interpreting Coefficients](#interpreting-coefficients)
+
+### Purpose of Interpreting Coefficients `(‘•.•’)?`
+
+ Understanding the coefficients of a regression model helps you answer an important question: **How do changes in our input features affect our predicted outcome?** In our house price analogy, think of it like this: **How much does an extra bedroom or square footage increase the predicted sale price?**
+
+Each coefficient tells us the expected change in the dependent variable (house price) for a one-unit increase in an independent variable (e.g., number of rooms, lot size), **while holding all other variables constant**.
+
+By interpreting these coefficients, we can gain insights into the relationships between our predictors and the target variable. This not only helps in model evaluation but also aids in decision-making, for instance, understanding which features are the most important drivers of house prices.
+
+### The Coefficients' Role Explained
+
+> The regression equation takes the form:
+
+$$
+y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + ... + \beta_n X_n
+$$
+
+Where:
+- $\( y \)$ is the predicted value (house price)
+- $\( X_1, X_2, ..., X_n \)$ are the independent variables (like bedrooms, bathrooms, lot size, etc.)
+- $\( \beta_0 \)$ is the intercept (the price when all features are zero, often a baseline price)
+- $\( \beta_1, \beta_2, ..., \beta_n \)$ are the coefficients for each independent variable
+
+`💰` In house prices:
+- A positive $\( \beta \)$ value means that increasing the corresponding feature increases house prices. For example, if adding a room increases the price by `$20,000`, then $\( \beta_1 \)$ would be 20,000.
+- A negative $\( \beta \)$ value suggests that increasing the feature decreases the house price.
+
+### p-value: Is the Feature Significant?
+
+The **p-value** tells us whether each coefficient is significantly different from zero. In simpler terms, it answers this question: **Is this predictor (e.g., the number of bedrooms) contributing meaningful information, or is its effect mostly due to chance?**
+
+- If the p-value is small (typically less than 0.05), the coefficient is considered **statistically significant**, meaning this feature likely has a real effect on house prices.
+- If the p-value is large, the feature’s effect might just be noise.
+
+Mathematically, the p-value is derived from the **t-statistic**, which is calculated as:
+
+$$
+t = \frac{\beta}{\text{standard error of } \beta}
+$$
+
+> The **standard error of $\( \beta \)$** measures the variability of the coefficient estimate, and it is used in the calculation of the t-statistic. It's calculated as:
+
+$$
+\text{SE}(\beta) = \sqrt{\frac{\text{MSE}}{\sum (X_i - \bar{X})^2}}
+$$
+
+Where:
+- $\( \text{MSE} \)$ is the Mean Squared Error
+- $\( X_i \)$ are the independent variable values
+- $\( \bar{X} \)$ is the mean of the independent variable values
+
+`🛈` This formula helps determine how much the coefficient is likely to vary if we were to repeat the sampling process.
+
+`🗲` The larger the t-statistic, the more significant the coefficient.
+
+### F-statistic: How Well Does the Model Fit?
+
+While the p-value focuses on individual predictors, the **F-statistic** looks at the model as a whole. It tells us whether the group of features we included has a significant relationship with the target variable.
+
+- A high F-statistic suggests that at least one of the predictors has a meaningful effect on house prices, meaning the model isn't just random guessing.
+
+The F-statistic is calculated as:
+
+$$
+F = \frac{\text{Explained Variance / Number of Predictors}}{\text{Unexplained Variance / Degrees of Freedom}}
+$$
+
+> The **unexplained variance**, also called the residual variance, is the portion of the total variance that the model fails to explain. It is the sum of squared residuals divided by the degrees of freedom:
+
+$$
+\text{Unexplained Variance} = \frac{\sum (y_{\text{test}} - y_{\text{pred}})^2}{n - p - 1}
+$$
+
+Where:
+- $\( n \)$ is the number of observations
+- $\( p \)$ is the number of predictors (independent variables)
+
+`🛈` This helps quantify how much variability in the data is left unexplained by the model.
+
+> The **degrees of freedom** (df) in a regression model refer to the number of values in the final calculation that are free to vary. For residuals, it is calculated as:
+
+$$
+\text{Degrees of Freedom (Residuals)} = n - p - 1
+$$
+
+Where:
+- $\( n \)$ is the number of observations
+- $\( p \)$ is the number of predictors
+
+`🛈` Degrees of freedom reflect the amount of information available to estimate the regression model parameters.
+
+> The **explained variance** represents the portion of the total variance that is explained by the regression model. It is calculated as:
+
+$$
+\text{Explained Variance} = \sum (\hat{y} - \bar{y})^2
+$$
+
+Where:
+- $\( \hat{y} \)$ are the predicted values
+- $\( \bar{y} \)$ is the mean of the actual values
+
+`🛈` This shows how much of the variation in the dependent variable can be attributed to the independent variables in the model.
+
+`🗲` In our house analogy, think of the F-statistic as asking: **Is this collection of features (bedrooms, lot size, etc.) doing a good job of predicting house prices, or would we be better off guessing the average house price every time?**
+
+### ✍️ To Tie It All Together: The Impact of Coefficients, R², and Adjusted R²
+
+ The **coefficients** tell us how each feature influences house prices, while the **p-values** tell us which features have significant effects. The **F-statistic** evaluates whether the model overall is useful for prediction. To cap it off, **R²** and **Adjusted R²** let us know how well the model explains the variance in the actual house prices:
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2a995928-e778-4070-bd9e-8540f76433e7" alt="tie" width="500" />
+</p>
+
+- $\( R² \)$ tells us how much of the variation in house prices is explained by the model:
+
+$$
+R^2 = 1 - \frac{\text{squared sum of residuals}}{\text{variance of actual values}}
+$$
+
+- **Adjusted R²** adjusts for the number of predictors, penalizing overly complex models:
+
+$$
+R_{\text{adj}}^2 = 1 - \frac{(1 - R^2)(n - 1)}{n - p - 1}
+$$
+
+Where $\( n \)$ is the number of observations, and $\( p \)$ is the number of predictors.
+
+### `🐦‍🔥`
+
+- **Positive coefficient**: More bedrooms? Price goes up!
+- **Negative coefficient**: More crime in the area? Price goes down!
+- **p-value**: Does the lot size have a significant effect, or is it just noise?
+- **F-statistic**: Is the whole model doing better than just predicting the average price?
+
+`🗲` With these metrics, we not only understand which factors drive house prices but also ensure that our model is more reliable.
+
+## `⛉` [Model Diagnostics](#model-diagnostics)
+
+ Interpreting the coefficients gives us valuable insights, but it’s equally important to check the assumptions and validity of our regression model through diagnostics. Let’s dive into a few key checks: Residual Analysis, Multicollinearity, and Homoscedasticity/Normality Tests.
+
+### Residual Analysis
+
+Residuals are the differences between the actual and predicted values (as we discussed). Analyzing residuals helps us understand if our model is appropriately capturing the relationships in the data.
+
+- **Purpose**: Residual analysis checks whether the errors (residuals) are randomly distributed. Ideally, residuals should have:
+  - **`⛊` No patterns** (indicating good fit),
+  - **`⛊` Constant variance** (homoscedasticity),
+  - **`⛊` Normal distribution**.
+
+- **Steps**:
+  1. **Plot Residuals vs. Fitted Values**: This helps to check for homoscedasticity and the presence of any patterns in the errors.
+  2. **Create a Q-Q Plot (Quantile-Quantile Plot)**: It visualizes whether residuals follow a normal distribution.
+
+**`💰` House Price Analogy**: If our house price predictions leave residuals that show a pattern or are concentrated in certain areas (e.g., mostly overestimating prices for large houses), it means our model might be missing key relationships.
+
+### Multicollinearity
+
+**Multicollinearity** occurs when two or more predictors in a model are highly correlated, making it hard to isolate their individual effects. This inflates the standard errors of the coefficients and can cause issues with interpreting the coefficients.
+
+- **Purpose❔**: Detecting multicollinearity ensures that each predictor provides unique information.
+- **Tests 🧐**:
+  - **Variance Inflation Factor (VIF)**: VIF measures how much the variance of a regression coefficient is inflated due to multicollinearity. A VIF value exceeding 10 indicates potential multicollinearity.
+
+**Formula**:
+
+$$
+\text{VIF}_i = \frac{1}{1 - R_i^2}
+$$
+
+Where $\( R_i^2 \)$ is the R² of regressing the $\( i \)$-th predictor against all the other predictors.
+
+**`💰` House Price Analogy**: Imagine if square footage and the number of rooms in a house are highly correlated. It becomes tough to know which feature is truly affecting the house price if both metrics rise and fall together.
+
+### Homoscedasticity and Normality Tests
+
+Homoscedasticity refers to the assumption that the residuals have constant variance across all levels of the predicted values.
+
+- **Purpose❔**: Ensuring homoscedasticity validates the model's assumptions, and if violated, our inferences from the model could be misleading.
+- **Tests 🧐**:
+  - **Breusch-Pagan Test**: This test detects heteroscedasticity by checking if residuals vary systematically with fitted values.
+  - **Shapiro-Wilk Test**: This test checks whether the residuals are normally distributed.
+  
+`🗲` If either assumption is violated, the model might need to be revised (e.g., applying transformations to the predictors or the target variable).
+
+## [Common Issues and Solutions](#common-issues-and-solutions)
+
+  _**No model is perfect**_, and during regression modeling, two frequent issues are **overfitting** and **underfitting**.
+
+<p align="center">
+  <img src="https://miro.medium.com/v2/resize:fit:1125/1*_7OPgojau8hkiPUiHoGK_w.png" alt="tie" width="500" />
+</p>
+
+### Overfitting
+
+Overfitting happens when the model learns the noise in the data instead of the true signal. It performs exceptionally well on the training data but poorly on unseen data.
+
+- **Solution**: Simplify the model by:
+  - `🛡️` Reducing the number of predictors,
+  - `🛡️` Applying regularization techniques (e.g., Ridge or Lasso regression),
+  - `🛡️` Using cross-validation to tune the model.
+
+**`💰` House Price Analogy**: Imagine a model that fits the exact price fluctuations in a small neighborhood, but when predicting prices in another area, it fails miserably. That’s overfitting — it learned too much from one dataset.
+
+<p align="center">
+  <img src="https://pbs.twimg.com/media/FSAM8FpWUAISGyd.jpg" alt="tie" width="500" />
+</p>
+
+### Underfitting
+
+Underfitting occurs when the model is too simple and fails to capture the underlying pattern in the data. This leads to poor performance on both training and testing data.
+
+- **Solution**: Increase the complexity of the model by:
+  - `🛡️` Adding more relevant features,
+  - `🛡️` Using a more sophisticated algorithm,
+  - `🛡️` Allowing for non-linear relationships.
+
+**`💰` House Price Analogy**: If a model just uses the average price of all houses without considering any other features (like location, size, etc.), it will likely underfit and miss key predictors that influence house prices.
+
