@@ -38,7 +38,9 @@
 
 ---
 
-## ✦ [Introduction to Linear Regression](#introduction-to-linear-regression) 
+<h1 align="center">✦</h1>
+
+## [Introduction to Linear Regression](#introduction-to-linear-regression) 
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/e47a7943-6fd4-4664-9d29-27c2c13bafaa" alt="lrmeme" width="500"/>
@@ -58,7 +60,9 @@
 
 Linear Regression serves as a fundamental building block in machine learning and data analysis, making it essential for anyone looking to understand predictive modeling.
 
-## ```૮₍•᷄ ࡇ •᷅₎ა``` [Mathematical Foundations](#mathematical-foundations)
+## [Mathematical Foundations](#mathematical-foundations)
+
+<h1 align="center">```૮₍•᷄ ࡇ •᷅₎ა```</h1>
 
 Understanding the mathematical foundations of linear regression is crucial for effectively applying the technique in real-world scenarios. This section covers the essential components, including the equation, dependent and independent variables, and the types of linear regression.
 
@@ -576,7 +580,9 @@ Where $\( n \)$ is the number of observations, and $\( p \)$ is the number of pr
 
 `🗲` With these metrics, we not only understand which factors drive house prices but also ensure that our model is more reliable.
 
-##`⛉`## [Model Diagnostics](#model-diagnostics)
+## [Model Diagnostics](#model-diagnostics)
+
+<h1 align="center">⛊</h1>
 
  Interpreting the coefficients gives us valuable insights, but it’s equally important to check the assumptions and validity of our regression model through diagnostics. Let’s dive into a few key checks: Residual Analysis, Multicollinearity, and Homoscedasticity/Normality Tests.
 
@@ -658,7 +664,9 @@ Underfitting occurs when the model is too simple and fails to capture the underl
 
 **`💰` House Price Analogy**: If a model just uses the average price of all houses without considering any other features (like location, size, etc.), it will likely underfit and miss key predictors that influence house prices.
 
-## .𖥔 ݁ ˖ Conclusion 
+## [Conclusion](#conclusion) 
+
+<h1 align="center">.𖥔 ݁ ˖</h1>
 
  Linear regression is often considered the backbone of predictive modeling and serves as one of the simplest yet most powerful algorithms in the world of machine learning. Its linear approach provides a clear and interpretable relationship between input features and output predictions, laying the groundwork for more advanced techniques like decision trees, neural networks, and ensemble methods. 
 
@@ -666,7 +674,7 @@ Underfitting occurs when the model is too simple and fails to capture the underl
 
  In this project, we've walked through a practical example, applying linear regression to predict housing prices, exploring essential concepts like interpreting coefficients, model diagnostics, and addressing common issues like overfitting. Through such exercises, we begin to appreciate not just the power of linear models, but also the importance of critically evaluating their assumptions and results.
 
-## Further Reading/Resources
+## [Further Reading/Resources](#further-readingresources)
 
 - [An Introduction to Statistical Learning](https://www.statlearning.com/)
 - [The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/)
