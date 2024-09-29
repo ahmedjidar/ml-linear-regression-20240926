@@ -582,7 +582,7 @@ Where $\( n \)$ is the number of observations, and $\( p \)$ is the number of pr
 
 ## [Model Diagnostics](#model-diagnostics)
 
-<h1 align="center">⛊</h1>
+<h1 align="center">⛉</h1>
 
  Interpreting the coefficients gives us valuable insights, but it’s equally important to check the assumptions and validity of our regression model through diagnostics. Let’s dive into a few key checks: Residual Analysis, Multicollinearity, and Homoscedasticity/Normality Tests.
 
