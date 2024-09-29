@@ -38,7 +38,7 @@
 
 ---
 
-## [Introduction to Linear Regression](#introduction-to-linear-regression) ✦ 
+## ✦ [Introduction to Linear Regression](#introduction-to-linear-regression) 
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/e47a7943-6fd4-4664-9d29-27c2c13bafaa" alt="lrmeme" width="500"/>
@@ -576,7 +576,7 @@ Where $\( n \)$ is the number of observations, and $\( p \)$ is the number of pr
 
 `🗲` With these metrics, we not only understand which factors drive house prices but also ensure that our model is more reliable.
 
-## `⛉` [Model Diagnostics](#model-diagnostics)
+##`⛉`## [Model Diagnostics](#model-diagnostics)
 
  Interpreting the coefficients gives us valuable insights, but it’s equally important to check the assumptions and validity of our regression model through diagnostics. Let’s dive into a few key checks: Residual Analysis, Multicollinearity, and Homoscedasticity/Normality Tests.
 
