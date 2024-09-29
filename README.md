@@ -28,8 +28,8 @@
    - Overfitting
    - Underfitting
 9. [Implementing Linear Regression](#implementing-linear-regression)
-   - Code Example Using sklearn LinearRegression model (OLS based)[]
-   - Code Example Using sklearn SGDRegresser model (Gradient Descent based)[]
+   - [Code Example Using sklearn LinearRegression model (OLS based)](ml-linear-regression-ols-20240926.ipynb)
+   - [Code Example Using sklearn SGDRegresser model (Gradient Descent based)](ml-linear-regression-sgd-20240926.ipynb)
 10. [Conclusion](#conclusion)
 11. [Further Reading/Resources](#further-readingresources)
 
