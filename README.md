@@ -45,7 +45,8 @@
 </p>
 
 ### ```ⓘ``` Definition
- Linear Regression is a statistical method used to model the relationship between a dependent variable and one or more independent variables. The primary goal is to predict the value of the dependent variable based on the values of the independent variables by fitting a linear equation to the observed data.
+ - Linear Regression is a statistical method used to model the relationship between a dependent variable and one or more independent variables. The primary goal is to predict the value of the dependent variable based on the values of the independent variables by fitting a linear equation to the observed data.
+ - Linear regression is a supervised learning technique because it uses labeled data to learn a function that maps input features to the target variable.
 
 ### Use Cases
 ```Linear Regression``` is widely used across various fields for its simplicity and interpretability. Some common use cases include:
@@ -671,6 +672,5 @@ Underfitting occurs when the model is too simple and fails to capture the underl
 - [The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/)
 - [Linear Regression in Python: A Complete Guide](https://realpython.com/linear-regression-in-python/)
 - [Scikit-learn: Linear Models](https://scikit-learn.org/stable/modules/linear_model.html)
-- [Interpreting Regression Coefficients: The Basics](https://data.library.virginia.edu/interpreting-regression-coefficients/)
 - [Understanding Residuals and Diagnostics in Regression](https://online.stat.psu.edu/stat462/node/172/)
 - [Multicollinearity: How to Detect and Fix](https://statisticsbyjim.com/regression/multicollinearity-in-regression-analysis/)
