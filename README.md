@@ -34,7 +34,7 @@
 
 ➥ _**Implementing Linear Regression (.ipynb)**_
    - [Code Example Using sklearn LinearRegression model (OLS based) →](ml-linear-regression-ols-20240926.ipynb) 
-   - [Code Example Using sklearn SGDRegresser model (Gradient Descent based) →](ml-linear-regression-sgd-20240926.ipynb) 
+   - [Code Example Using sklearn SGDRegresser model (Gradient Descent based) →](https://www.kaggle.com/code/arpandas65/simple-sgd-implementation-of-linear-regression) 
 
 ---
 
